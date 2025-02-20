@@ -7,11 +7,13 @@ function App() {
   const [publicKey, setPublicKey] = useState('');
 
   // Загрузка открытого ключа из файла
-  // const loadPublicKey = async () => {
-  //   const response = await fetch('https://yadi.sk/d/oKeyFio.pub');
-  //   const key = await response.text();
-  //   setPublicKey(key);
-  // };
+  const loadPublicKey = async () => {
+    const response = await fetch('./public_key.txt');
+    const key = await response.text();
+    setPublicKey(key);
+  };
+
+
 
   // Создание цифровой подписи
   const createSignature = () => {
@@ -41,7 +43,7 @@ function App() {
       />
       <button onClick={createSignature}>Создать подпись</button>
       <button onClick={verifySignature}>Проверить подпись</button>
-      {/* <button onClick={loadPublicKey}>Загрузить открытый ключ</button> */}
+      <button onClick={loadPublicKey}>Загрузить открытый ключ</button>
       <p>Подпись: {signature}</p>
     </div>
   );
